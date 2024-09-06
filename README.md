@@ -4,24 +4,24 @@
 1. [Project Overview](#-project-overview)
 2. [Objective](#-objective)
 3. [Dataset](#-dataset)
-4. [Installation and Setup](#-installation-and-setup)
-5. [Methodology](#-methodology)
+4. [Setup and Environment](#-setup-and-environment)
+5. [Jupyter Notebook Structure](#-jupyter-notebook-structure)
+6. [Methodology](#-methodology)
    - [Data Preprocessing](#data-preprocessing)
    - [Feature Extraction](#feature-extraction)
    - [Model Selection](#model-selection)
-6. [Experiments and Results](#-experiments-and-results)
+7. [Experiments and Results](#-experiments-and-results)
    - [Models without Preprocessing](#models-without-preprocessing)
    - [Models with Preprocessing](#models-with-preprocessing)
-7. [Best Model](#-best-model)
-8. [Analysis](#-analysis)
-9. [Conclusion](#-conclusion)
-10. [Future Work](#-future-work)
-11. [Contributing](#-contributing)
+8. [Best Model](#-best-model)
+9. [Analysis](#-analysis)
+10. [Conclusion](#-conclusion)
+11. [Future Work](#-future-work)
 12. [References](#-references)
 
 ## 📰 Project Overview
 
-FakeNews-Detector is an advanced machine learning project designed to tackle the pervasive issue of misinformation in digital media. By leveraging state-of-the-art natural language processing (NLP) techniques and various classification algorithms, this project aims to automatically distinguish between genuine and fabricated news articles with high accuracy.
+FakeNews-Detector is a Jupyter notebook-based machine learning project designed to tackle the pervasive issue of misinformation in digital media. By leveraging state-of-the-art natural language processing (NLP) techniques and various classification algorithms, this project aims to automatically distinguish between genuine and fabricated news articles with high accuracy.
 
 ## 🎯 Objective
 
@@ -33,51 +33,63 @@ The primary objectives of this project are:
 
 ## 📊 Dataset
 
-The project utilizes the "Fake and Real News Dataset" from Kaggle, which provides a balanced collection of authentic and fabricated news articles.
+The project utilizes the "Fake and Real News Dataset" from Kaggle:
 
 - **Source**: [Fake and Real News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset)
 - **Structure**: 
   - Two columns: 'Text' (news content) and 'label' (0 for Fake, 1 for Real)
-- **Size**: Approximately 44,898 articles (specific count may vary)
-- **Balance**: Nearly equal distribution of fake and real news articles
 - **Task Type**: Binary Classification
 
-## 🛠 Installation and Setup
+## 🛠 Setup and Environment
 
-To set up the FakeNews-Detector project, follow these steps:
+To run the FakeNews-Detector Jupyter notebook:
 
-1. Clone the repository:
+1. Ensure you have Jupyter Notebook or JupyterLab installed.
+2. Install required libraries:
    ```
-   git clone https://github.com/yourusername/FakeNews-Detector.git
-   cd FakeNews-Detector
+   pip install pandas scikit-learn spacy numpy
    ```
-
-2. Create a virtual environment (optional but recommended):
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
-
-3. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Download the spaCy English language model:
+3. Download the spaCy English language model:
    ```
    python -m spacy download en_core_web_sm
    ```
+4. Download the dataset from Kaggle and place it in the same directory as the notebook.
 
-5. Download the dataset from Kaggle and place it in the `data/` directory.
+## 📓 Jupyter Notebook Structure
+
+The project is contained in a single Jupyter notebook, structured as follows:
+
+1. **Introduction and Setup**
+   - Project overview
+   - Library imports
+   - Data loading
+
+2. **Data Preprocessing**
+   - Text cleaning function
+   - Application of preprocessing
+
+3. **Feature Extraction**
+   - Bag-of-N-grams implementation
+
+4. **Model Training and Evaluation**
+   - KNN (Euclidean and Cosine)
+   - Random Forest
+   - Multinomial Naive Bayes
+
+5. **Results and Analysis**
+   - Performance comparison
+   - Best model identification
+
+6. **Conclusion and Future Work**
 
 ## 🛠 Methodology
 
 ### Data Preprocessing
 
-Two approaches were implemented to evaluate the impact of preprocessing:
+Two approaches were implemented:
 
 1. **Without Preprocessing**: Raw text data used directly.
-2. **With Preprocessing**: The following steps were applied:
+2. **With Preprocessing**: 
    - Removal of stop words
    - Elimination of punctuation
    - Lemmatization of words
@@ -101,18 +113,7 @@ def preprocess(text):
 
 ### Feature Extraction
 
-The Bag-of-N-Grams approach was employed using scikit-learn's CountVectorizer:
-
-- Unigrams: Individual words
-- Bigrams: Pairs of consecutive words
-- Trigrams: Triplets of consecutive words
-
-Example configuration:
-```python
-from sklearn.feature_extraction.text import CountVectorizer
-
-vectorizer = CountVectorizer(ngram_range=(1, 3))  # For unigrams, bigrams, and trigrams
-```
+The Bag-of-N-Grams approach was employed using scikit-learn's CountVectorizer.
 
 ### Model Selection
 
@@ -276,16 +277,6 @@ The FakeNews-Detector project successfully demonstrates the effectiveness of mac
 5. Investigate the model's performance on different types of fake news (e.g., satire, propaganda)
 6. Conduct error analysis to understand the types of articles that are misclassified
 
-## 🤝 Contributing
-
-Contributions to the FakeNews-Detector project are welcome! Here's how you can contribute:
-
-1. Fork the repository
-2. Create a new branch for your feature or bug fix
-3. Commit your changes
-4. Push to your fork and submit a pull request
-
-Please ensure your code adheres to the project's coding standards and include appropriate tests.
 
 ## 📚 References
 
